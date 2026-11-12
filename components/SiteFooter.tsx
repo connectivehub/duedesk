@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { DueDeskLogo } from "@/components/DueDeskLogo";
 import { services } from "@/config/pricing";
-import { WHATSAPP_DISPLAY } from "@/config/site";
+import { COMPANY_LEGAL_NAME, COMPANY_UEN, WHATSAPP_DISPLAY } from "@/config/site";
 import { companyNav } from "@/lib/content";
 import { whatsappUrl } from "@/lib/whatsapp";
 
@@ -59,7 +59,9 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="container-site mt-12 border-t border-rule pt-6 text-sm text-muted-foreground">
-        <p>DueDesk is a brand of Connective Labs Pte Ltd, Singapore. UEN [placeholder].</p>
+        <p>
+          DueDesk is a brand of {COMPANY_LEGAL_NAME}, Singapore. UEN {COMPANY_UEN}.
+        </p>
         <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
           <Link
             href="/privacy"
@@ -74,7 +76,7 @@ export function SiteFooter() {
             Terms of Service
           </Link>
           <span className="inline-flex min-h-11 items-center md:min-h-0">
-            © {new Date().getFullYear()} Connective Labs Pte Ltd
+            © {new Date().getFullYear()} {COMPANY_LEGAL_NAME}
           </span>
         </p>
         <p className="mt-3 max-w-3xl">
