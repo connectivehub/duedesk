@@ -3,9 +3,9 @@
 @theme {
   --color-paper: #f7f2e8;
   --color-paper-dark: #ebe4d6;
-  --color-ink: #1c2838;
-  --color-ink-muted: #3d4a5c;
-  --color-navy: #243656;
+  --color-ink: #0d1a2e;
+  --color-ink-muted: #2a3d55;
+  --color-navy: #002551;
   --color-stamp: #8b3a3a;
   --color-rule: #c9bba8;
   --font-serif: var(--font-libre-baskerville), "Georgia", serif;
