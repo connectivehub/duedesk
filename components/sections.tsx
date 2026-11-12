@@ -8,16 +8,19 @@ import {
   FileTextIcon,
   KeyIcon,
   ListChecksIcon,
-  QuoteIcon,
   ScrollTextIcon,
   ShieldCheckIcon,
-  UserRoundIcon,
   ZapIcon,
 } from "@/components/icons";
 import { GhostLink, WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { pricing } from "@/config/pricing";
-import type { WhatsAppMessageKey } from "@/config/site";
-import { WHATSAPP_DISPLAY } from "@/config/site";
+import {
+  BIZFILE_SEARCH_URL,
+  COMPANY_LEGAL_NAME,
+  COMPANY_UEN,
+  WHATSAPP_DISPLAY,
+  type WhatsAppMessageKey,
+} from "@/config/site";
 import {
   ACRA_PENALTY_URL,
   annualReturnExample,
@@ -354,13 +357,14 @@ export function About() {
   return (
     <section id="about" className="border-y border-rule bg-card py-16 md:py-24">
       <div className="container-site grid items-start gap-10 md:grid-cols-[0.8fr_1.2fr]">
-        <div
-          className="flex aspect-[4/5] flex-col items-center justify-center gap-3 border border-dashed border-rule bg-muted text-center text-muted-foreground"
-          role="img"
-          aria-label="Portrait of Leon Lee, placeholder"
-        >
-          <UserRoundIcon className="size-12" />
-          <span className="text-sm">[placeholder: portrait of Leon Lee]</span>
+        <div className="relative aspect-[4/5] overflow-hidden border border-rule bg-muted">
+          <Image
+            src="/images/leon-lee.jpg"
+            alt="Leon Lee, who handles every DueDesk case"
+            fill
+            sizes="(min-width: 768px) 29rem, 100vw"
+            className="object-cover"
+          />
         </div>
         <div>
           <p className="eyebrow mb-3">About</p>
@@ -376,12 +380,50 @@ export function About() {
             judgement.
           </p>
           <ul className="mt-8 flex flex-col gap-2 border-y border-rule py-4 text-sm sm:flex-row sm:gap-6">
-            <li>A brand of Connective Labs Pte Ltd, Singapore</li>
-            <li>UEN [placeholder]</li>
+            <li>A brand of {COMPANY_LEGAL_NAME}, Singapore</li>
+            <li>UEN {COMPANY_UEN}</li>
             <li>Published fixed prices</li>
           </ul>
-          <div className="mt-8 flex items-center gap-3 border border-dashed border-rule bg-background p-5 text-muted-foreground">
-            <QuoteIcon className="size-6 shrink-0" /> [placeholder: client reviews]
+          <div className="mt-8 border border-rule bg-background p-5 md:p-6">
+            <h3 className="text-xl md:text-2xl">Why you can check us before you pay</h3>
+            <ul className="mt-5 grid gap-3">
+              <li className="flex gap-3">
+                <CheckIcon className="mt-1 size-5 shrink-0 text-gold" />
+                <span>
+                  Registered Singapore company: {COMPANY_LEGAL_NAME}, UEN {COMPANY_UEN} (
+                  <a
+                    href={BIZFILE_SEARCH_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4"
+                  >
+                    Bizfile search
+                  </a>
+                  )
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <CheckIcon className="mt-1 size-5 shrink-0 text-gold" />
+                <span>
+                  Prices published in full on{" "}
+                  <a href="#pricing" className="underline underline-offset-4">
+                    this page
+                  </a>
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <CheckIcon className="mt-1 size-5 shrink-0 text-gold" />
+                <span>Fixed quote in writing before you pay</span>
+              </li>
+              <li className="flex gap-3">
+                <CheckIcon className="mt-1 size-5 shrink-0 text-gold" />
+                <span>One named person, Leon, from first message to filing</span>
+              </li>
+              <li className="flex gap-3">
+                <CheckIcon className="mt-1 size-5 shrink-0 text-gold" />
+                <span>We never ask for your Singpass or Corppass</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

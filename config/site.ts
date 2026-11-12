@@ -2,6 +2,12 @@ export const SITE_URL = "https://duedesk.connective-labs.com";
 
 export const SITE_NAME = "DueDesk";
 
+export const COMPANY_LEGAL_NAME = "Connective Labs Pte. Ltd.";
+
+export const COMPANY_UEN = "202543350R";
+
+export const BIZFILE_SEARCH_URL = "https://www.bizfile.gov.sg/";
+
 export const SITE_DESCRIPTION =
   "Fixed-price help for Singapore companies behind on ACRA annual returns and AGMs. From S$199, ready in 3 working days. We prepare your pack, you file on Bizfile.";
 

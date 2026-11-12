@@ -1,5 +1,12 @@
 import { pricing } from "@/config/pricing";
-import { SITE_NAME, SITE_URL, WHATSAPP_DISPLAY, type WhatsAppMessageKey } from "@/config/site";
+import {
+  COMPANY_LEGAL_NAME,
+  COMPANY_UEN,
+  SITE_NAME,
+  SITE_URL,
+  WHATSAPP_DISPLAY,
+  type WhatsAppMessageKey,
+} from "@/config/site";
 
 const ar = pricing.annualReturn;
 
@@ -265,7 +272,13 @@ export const professionalServiceLd = {
   },
   parentOrganization: {
     "@type": "Organization",
-    name: "Connective Labs Pte Ltd",
+    name: COMPANY_LEGAL_NAME,
+    taxID: COMPANY_UEN,
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "UEN",
+      value: COMPANY_UEN,
+    },
   },
   openingHours: "Mo-Sa 09:00-21:00",
   priceRange: `From ${ar.currency}${ar.firstOverdueYear}`,
