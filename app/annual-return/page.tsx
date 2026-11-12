@@ -93,9 +93,8 @@ export default function AnnualReturnPage() {
           Annual return overdue? We&apos;ll get your company caught up.
         </h1>
         <p className="mt-5 text-lg text-ink-muted">
-          For Singapore companies searching because the annual return is late, the AGM slipped, or
-          Bizfile shows overdue status. We prepare each year&apos;s catch-up pack in order. You stay
-          in control of filing.
+          Late annual return, missed AGM or a Bizfile penalty notice? We prepare each year&apos;s
+          catch-up pack in order, and you stay in control of filing.
         </p>
         <div className="mt-8">
           <WhatsAppCTA messageKey="annualReturn">WhatsApp: start an annual return job</WhatsAppCTA>
