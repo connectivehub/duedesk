@@ -1,23 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
 
-/** Official wordmark: 2× PNG (344×77) for sharp small sizes; SVG wrapper in repo. */
-const LOGO_WIDTH = 172;
-const LOGO_HEIGHT = 38;
+type Props = {
+  linked?: boolean;
+  className?: string;
+  priority?: boolean;
+};
 
-export function DueDeskLogo() {
+/** Official wordmark. Display height is set by className. */
+export function DueDeskLogo({
+  linked = true,
+  className = "h-9 w-auto md:h-11",
+  priority = false,
+}: Props) {
+  const image = (
+    <Image
+      src="/brand/duedesk-logo.png"
+      alt="DueDesk"
+      width={344}
+      height={77}
+      priority={priority}
+      className={className}
+    />
+  );
+
+  if (!linked) return image;
+
   return (
-    <Link href="/" className="group inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/40">
-      <Image
-        src="/brand/duedesk-logo.png"
-        alt="DueDesk"
-        width={LOGO_WIDTH}
-        height={LOGO_HEIGHT}
-        priority
-        className="h-8 w-auto sm:h-9"
-        sizes="(max-width: 640px) 140px, 172px"
-      />
-      <span className="chop-mark mt-1 block text-ink-muted group-hover:text-stamp">Singapore</span>
+    <Link href="/" className="flex min-h-11 items-center" aria-label="DueDesk home">
+      {image}
     </Link>
   );
 }
