@@ -1,26 +1,26 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import type { WhatsAppMessageKey } from "@/config/site";
-import { whatsappUrl } from "@/lib/whatsapp";
 
-type Props = {
-  messageKey: WhatsAppMessageKey;
-  label?: string;
+const messageByPath: Record<string, WhatsAppMessageKey> = {
+  "/books": "books",
+  "/tender": "tender",
+  "/grant-claim": "grantClaim",
+  "/esg": "esg",
 };
 
-export function StickyWhatsApp({ messageKey, label = "WhatsApp" }: Props) {
+/** Full-width bar on small screens. Hidden from the `md` breakpoint up. */
+export function StickyWhatsApp() {
+  const pathname = usePathname();
+  const messageKey = messageByPath[pathname] ?? "annualReturn";
+
   return (
-    <a
-      href={whatsappUrl(messageKey)}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-sm border border-ink bg-ink px-4 py-3 text-sm font-medium text-paper shadow-md sm:bottom-6 sm:right-6"
-      aria-label="Contact us on WhatsApp"
-    >
-      <span aria-hidden className="text-base">
-        ✉
-      </span>
-      {label}
-    </a>
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-rule bg-background/95 p-3 backdrop-blur-sm md:hidden">
+      <WhatsAppCTA messageKey={messageKey} size="md" className="w-full px-5 text-base">
+        Get a fixed quote on WhatsApp
+      </WhatsAppCTA>
+    </div>
   );
 }

@@ -1,30 +1,35 @@
-import type { Metadata } from "next";
-import { Libre_Baskerville, Source_Sans_3 } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Libre_Baskerville } from "next/font/google";
+import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { StickyWhatsApp } from "@/components/StickyWhatsApp";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/config/site";
+import { professionalServiceLd } from "@/lib/content";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 const libreBaskerville = Libre_Baskerville({
   weight: ["400", "700"],
   subsets: ["latin"],
-  variable: "--font-libre-baskerville",
-  display: "swap",
-});
-
-const sourceSans = Source_Sans_3({
-  subsets: ["latin"],
-  variable: "--font-source-sans",
+  variable: "--font-libre",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Urgent company paperwork, Singapore`,
+    default: `${SITE_NAME} | Overdue Annual Return? Caught Up in 3 Working Days`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  authors: [{ name: SITE_NAME }],
   openGraph: {
     siteName: SITE_NAME,
     locale: "en_SG",
@@ -44,19 +49,29 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#002551",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-SG">
-      <body
-        className={`${libreBaskerville.variable} ${sourceSans.variable} min-h-screen antialiased`}
-      >
+    <html lang="en-SG" className={`${inter.variable} ${libreBaskerville.variable}`}>
+      <body className="min-h-screen antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:bg-card focus:p-3"
+        >
+          Skip to content
+        </a>
         <SiteHeader />
-        <main className="mx-auto max-w-3xl px-4 pb-24 sm:px-6">{children}</main>
+        <main id="main">{children}</main>
         <SiteFooter />
+        <StickyWhatsApp />
+        <JsonLd data={professionalServiceLd} />
       </body>
     </html>
   );

@@ -1,48 +1,54 @@
-import { ServiceNav } from "@/components/ServiceNav";
-import { StickyWhatsApp } from "@/components/StickyWhatsApp";
-import { WhatsAppCTA } from "@/components/WhatsAppCTA";
+import { JsonLd } from "@/components/JsonLd";
+import {
+  About,
+  FaqSection,
+  FinalCta,
+  GuaranteeBar,
+  Hero,
+  HowItWorks,
+  PenaltySection,
+  PricingBlock,
+  Promises,
+  ServiceGrid,
+  Situations,
+} from "@/components/sections";
+import { faqPageLd, homeFaqs } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "Urgent company paperwork",
+  title: "Overdue annual return",
+  absoluteTitle: "DueDesk | Overdue Annual Return? Caught Up in 3 Working Days",
   description:
-    "DueDesk helps Singapore business owners catch up overdue annual returns, books for Form C-S, and other fixed-price paperwork jobs.",
+    "Fixed-price help for Singapore companies behind on ACRA annual returns and AGMs. From S$199, ready in 3 working days. We prepare your pack, you file on Bizfile.",
   path: "/",
 });
 
 export default function HomePage() {
   return (
     <>
-      <div className="border-b ledger-rule py-12">
-        <p className="chop-mark text-stamp">Est. for busy directors</p>
-        <h1 className="mt-3 font-serif text-3xl leading-tight sm:text-4xl">
-          Last-minute company paperwork, sorted at a fixed price
-        </h1>
-        <p className="mt-5 max-w-xl text-lg text-ink-muted">
-          When ACRA or IRAS deadlines have passed and your desk is full of half-finished files, we
-          prepare the documents you need. You file with your own Singpass, or our partner corporate
-          service provider files for you.
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <WhatsAppCTA messageKey="general">Message us on WhatsApp</WhatsAppCTA>
-          <a
-            href="#services"
-            className="text-center text-sm text-navy underline decoration-rule underline-offset-4"
-          >
-            Browse services
-          </a>
-        </div>
-      </div>
-
-      <section id="services" className="py-10">
-        <h2 className="font-serif text-xl">Services</h2>
-        <p className="mt-2 text-sm text-ink-muted">
-          One-off jobs. No monthly retainer. Each price is agreed before we start.
-        </p>
-        <ServiceNav />
-      </section>
-
-      <StickyWhatsApp messageKey="general" label="WhatsApp" />
+      <JsonLd data={faqPageLd(homeFaqs)} />
+      <Hero
+        eyebrow="For Singapore companies behind on ACRA filings"
+        title="Overdue annual return? We'll get you caught up in 3 working days."
+        sub="Fixed price, agreed before you pay. One named person handles your case. We prepare everything, and you file on Bizfile with your Singpass in about 15 minutes."
+        messageKey="annualReturn"
+        primaryLabel="Get a fixed quote on WhatsApp"
+        secondaryHref="#pricing"
+        secondaryLabel="See pricing"
+      />
+      <GuaranteeBar />
+      <PenaltySection title="The longer it waits, the more it costs" />
+      <Situations />
+      <ServiceGrid />
+      <HowItWorks />
+      <PricingBlock />
+      <Promises />
+      <About />
+      <FaqSection items={homeFaqs} />
+      <FinalCta
+        title="Stop the penalties piling up. Message us now."
+        messageKey="annualReturn"
+      />
     </>
   );
 }

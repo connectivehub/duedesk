@@ -1,41 +1,46 @@
-import { StickyWhatsApp } from "@/components/StickyWhatsApp";
-import { WhatsAppCTA } from "@/components/WhatsAppCTA";
+import { FinalCta, Hero, QuotePanel, Steps } from "@/components/sections";
 import { pricing } from "@/config/pricing";
 import { pageMetadata } from "@/lib/metadata";
 
+const steps = [
+  "WhatsApp the tender name and the closing date.",
+  "Get a fixed quote, in writing, before you pay anything.",
+  "Send the tender documents, forms, and annexes you already have.",
+  "Receive an assembled, checked pack in time to submit. You make the submission.",
+];
+
 export const metadata = pageMetadata({
-  title: "Tender submission pack",
+  title: "Tender Submission Prep",
   description:
-    "Tender document preparation for Singapore businesses. Service launching soon; WhatsApp us in the meantime.",
+    "Tender documents assembled, checked and on time for Singapore businesses. Fixed quote on WhatsApp before you pay.",
   path: "/tender",
 });
 
 export default function TenderPage() {
   return (
     <>
-      <header className="border-b ledger-rule py-10">
-        <span className="chop-mark text-stamp">Coming soon</span>
-        <h1 className="mt-3 font-serif text-3xl leading-tight sm:text-4xl">
-          Tender submission pack
-        </h1>
-        <p className="mt-5 text-lg text-ink-muted">
-          Fixed-price help to assemble forms, declarations, and annexes when a tender deadline is
-          close. We are finishing our checklist for common government and enterprise tenders.
-        </p>
-        <div className="mt-8">
-          <WhatsAppCTA messageKey="tender">WhatsApp: tender help</WhatsAppCTA>
-        </div>
-      </header>
-
-      <div className="paper-card my-10 p-6">
-        <p className="text-ink-muted">
-          Pricing: <span className="font-medium text-ink">{pricing.tender.display}</span>. Message us
-          with the tender reference and closing date. We will tell you when this service is open and
-          whether we can help now as a one-off job.
-        </p>
-      </div>
-
-      <StickyWhatsApp messageKey="tender" label="Tender help" />
+      <Hero
+        eyebrow="Tender Submission Prep"
+        title="Tender documents assembled, checked and on time."
+        sub="Forms, declarations, and annexes pulled into one pack when the closing date is close. You submit. We prepare."
+        messageKey="tender"
+        primaryLabel="Get a fixed quote on WhatsApp"
+        secondaryHref="#pricing"
+        secondaryLabel="See pricing"
+      />
+      <Steps
+        eyebrow="How it works"
+        title="Four steps, all on WhatsApp."
+        steps={steps}
+        note="We prepare the submission pack. Your company makes the tender submission."
+      />
+      <QuotePanel
+        display={pricing.tender.display}
+        note={pricing.tender.note}
+        messageKey="tender"
+        label="Get my fixed quote on WhatsApp"
+      />
+      <FinalCta title="Closing date close? Message us now." messageKey="tender" />
     </>
   );
 }

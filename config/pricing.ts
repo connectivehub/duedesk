@@ -1,5 +1,6 @@
 /**
  * Client-facing prices and turnaround. Edit here to update the site.
+ * The WhatsApp ordering flow reads annualReturn amounts from this object.
  */
 export const pricing = {
   annualReturn: {
@@ -9,20 +10,25 @@ export const pricing = {
     workingDaysTurnaround: 3,
     rushSurcharge: 80,
     rushLabel: "24-hour rush",
-    note:
-      "ACRA's own filing fee and any penalties are paid to ACRA separately and are not included in our fee.",
+    note: "ACRA filing fees and any late penalties are paid by you directly to ACRA and are not included.",
   },
   books: {
-    display: "Price on WhatsApp",
+    display: "Quoted on WhatsApp",
     note: "Quoted after we understand your months behind and transaction volume.",
   },
   tender: {
-    display: "Coming soon",
-    comingSoon: true,
+    display: "Quoted on WhatsApp",
+    comingSoon: false,
+    note: "Fixed price after we see the tender reference and closing date.",
   },
   grantClaim: {
-    display: "Coming soon",
-    comingSoon: true,
+    display: "Quoted on WhatsApp",
+    comingSoon: false,
+    note: "Fixed price after we see the grant type and claim stage.",
+  },
+  esg: {
+    display: "Quoted on WhatsApp",
+    note: "A fixed price, agreed up front, before any work starts.",
   },
 } as const;
 
@@ -30,31 +36,37 @@ export const services = [
   {
     slug: "annual-return",
     href: "/annual-return",
-    title: "Overdue annual return",
-    shortDescription:
-      "Catch up AGM and annual return paperwork for every overdue year, in order.",
+    title: "Annual Return & AGM Catch-up",
+    shortDescription: "Every overdue year, ready to file.",
     available: true,
   },
   {
     slug: "books",
     href: "/books",
-    title: "Books catch-up (Form C-S)",
-    shortDescription:
-      "Year-end bookkeeping tidy-up ahead of your Form C-S due 30 November.",
+    title: "Year-end Books before Form C-S",
+    shortDescription: "Get your books ready before IRAS's 30 November deadline.",
     available: true,
   },
   {
     slug: "tender",
     href: "/tender",
-    title: "Tender submission pack",
-    shortDescription: "Document preparation for urgent tender responses.",
-    available: false,
+    title: "Tender Submission Prep",
+    shortDescription: "Tender documents assembled, checked and on time.",
+    available: true,
   },
   {
     slug: "grant-claim",
     href: "/grant-claim",
-    title: "Grant claim (EDG / PSG)",
-    shortDescription: "Support paperwork for Enterprise Development Grant or PSG claims.",
-    available: false,
+    title: "Grant Claim Packs (EDG/PSG)",
+    shortDescription: "Claim documents prepared the way agencies expect.",
+    available: true,
+  },
+  {
+    slug: "esg",
+    href: "/esg",
+    title: "ESG Pack, done for you",
+    shortDescription:
+      "You don't need more advice, you need it done, at a fixed price agreed up front.",
+    available: true,
   },
 ] as const;

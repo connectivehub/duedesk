@@ -5,18 +5,32 @@ type PageMetaInput = {
   title: string;
   description: string;
   path: string;
+  /** Full document title. Skips the layout template. */
+  absoluteTitle?: string;
+  noindex?: boolean;
+  twitterCard?: "summary" | "summary_large_image";
 };
 
-export function pageMetadata({ title, description, path }: PageMetaInput): Metadata {
-  const url = `${SITE_URL}${path}`;
-  const fullTitle = path === "/" ? `${SITE_NAME} | Urgent company paperwork, Singapore` : `${title} | ${SITE_NAME}`;
+export function pageMetadata({
+  title,
+  description,
+  path,
+  absoluteTitle,
+  noindex = false,
+  twitterCard = "summary_large_image",
+}: PageMetaInput): Metadata {
+  const url = `${SITE_URL}${path === "/" ? "" : path}`;
+  const fullTitle =
+    absoluteTitle ??
+    (path === "/" ? `${SITE_NAME} | Urgent company paperwork, Singapore` : `${title} | ${SITE_NAME}`);
 
   return {
-    title: fullTitle,
+    title: { absolute: fullTitle },
     description,
     alternates: {
       canonical: url,
     },
+    robots: noindex ? { index: false, follow: true } : { index: true, follow: true },
     openGraph: {
       title: fullTitle,
       description,
@@ -26,7 +40,7 @@ export function pageMetadata({ title, description, path }: PageMetaInput): Metad
       type: "website",
       images: [
         {
-          url: `${SITE_URL}/opengraph-image.png`,
+          url: "/opengraph-image.png",
           width: 1200,
           height: 630,
           alt: SITE_NAME,
@@ -34,10 +48,10 @@ export function pageMetadata({ title, description, path }: PageMetaInput): Metad
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: twitterCard,
       title: fullTitle,
       description,
-      images: [`${SITE_URL}/opengraph-image.png`],
+      images: twitterCard === "summary_large_image" ? ["/opengraph-image.png"] : undefined,
     },
   };
 }
