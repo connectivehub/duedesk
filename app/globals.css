@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f7f2e8;
+  --color-paper-dark: #ebe4d6;
+  --color-ink: #0d1a2e;
+  --color-ink-muted: #2a3d55;
+  --color-navy: #002551;
+  --color-stamp: #8b3a3a;
+  --color-rule: #c9bba8;
+  --font-serif: var(--font-libre-baskerville), "Georgia", serif;
+  --font-sans: var(--font-source-sans), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+}
+
+.ledger-rule {
+  border-color: var(--color-rule);
+}
+
+.paper-card {
+  background: #fdfbf7;
+  border: 1px solid var(--color-rule);
+  box-shadow: 2px 3px 0 rgba(28, 40, 56, 0.06);
+}
+
+.chop-mark {
+  color: var(--color-stamp);
+  font-family: var(--font-serif);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+}
